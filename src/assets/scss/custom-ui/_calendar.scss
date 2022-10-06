@@ -1,0 +1,54 @@
+.custom-plan-week {
+  .fc-event {
+    border-radius: 8px;
+  }
+  .fc-timegrid-event .fc-event-main {
+    padding: 8px;
+  }
+  .fc-v-event {
+    .fc-event-title-container {
+      flex-grow: 0;
+      .fc-event-title {
+        top: -20px;
+      }
+      .fc-event-code {
+        margin-bottom: 18px;
+      }
+      .fc-event-count {
+        margin-bottom: 12px;
+      }
+    }
+    .fc-event-time {
+      color: #ffffff85;;
+    }
+  }
+}
+
+.custom-calendar-small {
+  .p-calendar {
+    width: 100%;
+  }
+  .p-datepicker table td {
+    padding: 0;
+    & > span {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  .p-datepicker-header {
+    padding: 0;
+  }
+  
+  .p-datepicker-title {
+    @extend .font-size-14;
+  }
+  .p-datepicker-calendar {
+    @extend .font-size-14;
+  }
+}
+.p-calendar {
+  min-width: 100px;
+}
+.p-inputtext {
+  min-width: 70px;
+}

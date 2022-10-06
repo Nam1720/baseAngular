@@ -1,0 +1,38 @@
+<div class="upload-dnd border-rd-5">
+  <div
+    class="form-upload display-flex-center justify-content-center border-rd-4 full-width border-rd-5"
+    appDnd
+    (fileDropped)="onFileDropped($event)"
+  >
+    <input [disabled]="disabled" type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
+    <div class="upload-dnd__desc text-center">
+      <a href="javascript:;" class="form-upload__icon display-flex-center justify-content-center border-rd-50 bg-color-bg-blue mb-2">
+        <i class="pi pi-upload font-size-20 color-blue"></i>
+      </a>
+      <p class="third-color-txt">Kéo file vào hoặc click để chọn</p>
+    </div>
+  </div>
+  <div *ngIf="files.length" class="files-list">
+    <div class="files-list__row" [ngClass]="{'row': !isOnlyFile }">
+      <div *ngFor="let file of files; let i = index" class="item" [ngClass]="{'col-lg-6 col-sm-12': !isOnlyFile }">
+        <div class="item__wrap display-flex justify-content-between">
+          <div class="item__content display-flex">
+            <div class="item__icon">
+              <i class="pi pi-file font-size-20"></i>
+            </div>
+            <div class="item__info">
+              <h4 class="item__name word-excerpt-line">{{ file?.name }}</h4>
+              <p *ngIf="file?.size" class="item__size third-color-txt font-size-14 mb-1">
+                {{ formatBytes(file?.size) }}
+              </p>
+              <app-progress-upload *ngIf="file?.progress" [progress]="file?.progress"></app-progress-upload>
+            </div>
+          </div>
+          <div class="item__del text-center" (click)="deleteFile(i)">
+            <i class="pi pi-times color-red font-size-20 cursor-pointer"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="niw-table position-rel">
+  <app-niw-table-loading></app-niw-table-loading>
+  <app-niw-table-config-col></app-niw-table-config-col>
+  <!-- <TableOptionSelectFormComponent></TableOptionSelectFormComponent> -->
+  <table class="niw-table__detail full-width" border="1">
+    <thead>
+      <tr>
+        <th *ngIf="isShowSelect" [rowSpan]="theadChildNum.length">
+          <!-- <p-checkbox [binary]="true" (click)="checkAll(e)" #e></p-checkbox> -->
+          <input id="allCheck" type="checkbox" name="checkbox" (click)="checkAll()">
+        </th>
+        <th *ngFor="let item of _configCollumn" [attr.rowspan]="item?.thead?.rowspan" [attr.colspan]="item?.thead?.colspan">
+          <app-table-head-item [dataTh]="item.thead"></app-table-head-item>
+        </th>
+        <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
+          <th *ngFor="let day of counter(daysInMonth); let i = index" [rowSpan]="theadChildNum.length">
+            {{ i + 1 }}
+          </th>
+        </ng-container>
+        <th *ngIf="menuAction.length" [rowSpan]="theadChildNum.length"></th>
+      </tr>
+      <ng-container *ngIf="theadChildNum.length">
+        <tr *ngFor="let num of theadChildNum">
+          <ng-container *ngIf="theadChild['head' + num]" >
+            <th *ngFor="let child of theadChild['head' + num]" [attr.rowspan]="child?.thead?.rowspan" [attr.colspan]="child?.thead?.colspan">
+              <app-table-head-item [dataTh]="child.thead"></app-table-head-item>
+            </th>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </thead>
+    <tbody>
+      <!-- *ngFor="let item of dataSource; trackBy: trackById; let isEven = even; let isOdd = odd; let i = index" -->
+      <ng-container *ngFor="let item of dataSource; let rowIndex = index">
+        <tr>
+          <td *ngIf="isShowSelect">
+            <input type="checkbox" name="checkbox" [checked]="selectedRowsId.includes(item.id)">
+          </td>
+          <td *ngFor="let row of allKeyRender">
+            <ng-container *ngIf="row?.key">
+              <div class="display-flex-center">
+                <!--Start check type data -->
+                <ng-container [ngSwitch]="row?.tbody?.type">
+                  <ng-container *ngSwitchCase="'select'">
+                    <app-table-option-select-form (showOption)="onShowOption()" [optionsMenu]="row?.tbody?.typeSelectOption"></app-table-option-select-form>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'number'">
+                    <app-table-input-number-form ></app-table-input-number-form>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'input'">
+                    <app-table-input-text-form></app-table-input-text-form>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'date'">
+                    <app-table-date-form></app-table-date-form>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                    {{ row.key ? item[row.key] : '' }}
+                  </ng-container>
+                </ng-container>
+                <!-- End check type data -->
+                <ng-container *ngIf="row?.tbody?.isFilterChild">
+                  <i class="icon-arrow-bottom-fill color-blue font-size-16 cursor-pointer ml-2 effect-transition-fast" (click)="showExpandedItem(rowIndex)" [ngClass]="{'pi-transition': rowIndex !== expendActive}"></i>
+                </ng-container>
+              </div>
+            </ng-container>
+          </td>
+          <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
+            <td *ngFor="let day of counter(daysInMonth); let j = index">
+              {{ item.days[j] }}
+            </td>
+          </ng-container>
+          <td *ngIf="menuAction.length">...</td>
+        </tr>
+        <!-- show table expend -->
+        <tr *ngIf="rowIndex === expendActive" class="row-expanded">
+          <td [id]="'item_' + rowIndex" [attr.colspan]="(isShowSelect ? 1 : 0) + (_configCollumn.length + 1) + (counter(daysInMonth).length + 1) + (menuAction.length + 1)" class="padding-0-imp">
+            <table class="niw-table__detail niw-table-expend full-width" border="1">
+              <thead *ngIf="_configCollumnExpend && _configCollumnExpend.length">
+                <th *ngIf="isShowSelect"></th>
+                <th *ngFor="let item of _configCollumnExpend">
+                  <app-table-head-item [dataTh]="item.thead"></app-table-head-item>
+                </th>
+                <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
+                  <th *ngFor="let day of counter(daysInMonth); let i = index" [rowSpan]="theadChildNum.length">
+                    {{ i + 1 }}
+                  </th>
+                </ng-container>
+                <th *ngIf="menuAction.length" [rowSpan]="theadChildNum.length"></th>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let itemExpend of item.children; let rowIndex = index">
+                  <tr>
+                    <td *ngIf="isShowSelect">
+                      <input type="checkbox" name="checkbox">
+                    </td>
+                    <td *ngFor="let rowExpend of (_configCollumnExpend && _configCollumnExpend.length ? _configCollumnExpend : allKeyRender)">
+                      <ng-container *ngIf="rowExpend?.key">
+                        {{ rowExpend.key ? itemExpend[rowExpend.key] : '' }}
+                      </ng-container>
+                    </td>
+                    <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
+                      <td *ngFor="let day of counter(daysInMonth); let j = index">
+                        {{ item.days[j] }}
+                      </td>
+                    </ng-container>
+                    <th *ngIf="menuAction.length"></th>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="display-flex justify-content-end mb-3">
+  <a
+    pButton
+    type="button"
+    label="Thêm mới"
+    icon="icon-add"
+    class="btn btn--add mr-3"
+  ></a>
+  <a
+    pButton
+    type="button"
+    label="Import"
+    icon="icon-add"
+    class="btn btn--import"
+  ></a>
+</div>
+<p-panel [showHeader]="false" styleClass="padding-0 body-border primary-color-txt">
+  <app-category-product-filter></app-category-product-filter>
+  <app-category-product-table></app-category-product-table>
+</p-panel>

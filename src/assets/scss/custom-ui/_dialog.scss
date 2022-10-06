@@ -1,0 +1,51 @@
+.p-dialog .p-dialog-header {
+  border-bottom: 1px solid $color_border;
+  @extend .primary-color-txt;
+}
+.p-dialog .p-dialog-content,
+.p-dialog .p-dialog-footer,
+.p-dialog .p-dialog-header {
+  padding: 1rem 1.5rem;
+  @extend .primary-color-txt;
+}
+.p-dialog .p-dialog-footer {
+  border-top: 1px solid $color_border;
+}
+.p-dialog-mask {
+  z-index: 999 !important;
+}
+.dialog-center {
+  .p-dialog-header {
+    @extend .position-rel;
+    justify-content: center;
+    padding: 0.8rem 1.5rem 0.5rem;
+  }
+
+  .p-dialog-header-icons {
+    position: absolute;
+    top: 0.4rem;
+    right: 1.5rem;
+  }
+}
+
+.border-0 {
+  .p-dialog-header,
+  .p-dialog-footer {
+    border: 0;
+  }
+}
+// hide overflow-y
+#hide_overflow {
+  .p-dialog-content {
+    overflow-y: inherit !important;
+  }
+}
+
+.height-90vh {
+  transform: none !important;
+  max-height: 90vh !important;
+
+  .p-scrollpanel-bar {
+    display: none;
+  }
+}

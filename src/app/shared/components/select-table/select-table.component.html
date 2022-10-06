@@ -1,0 +1,47 @@
+<div class="select position-rel" (click)="onClickOpenMenu($event)"
+     appClickOutSide
+     (clickOutside)="isOpenMenu = false">
+  <a
+    href="javascript:"
+    class="select__value">
+    <!--    (click)="onClickOpenMenu($event)"-->
+    <!--    appClickOutSide-->
+    <!--    (clickOutside)="isOpenMenu = false">-->
+
+    <p class="font-size-14" #valueSelect></p>
+  </a>
+  <div *ngIf="isOpenMenu" [ngClass]="{ right: position === 'right' }" [ngStyle]="stylePosition"
+       class="select__box position-abs bg-color-light margin-0 p-0">
+    <div class="select__input">
+     <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search">
+    </span>
+    </div>
+    <!--      [ngClass]="{ right: position === 'right' }"-->
+    <!--      [ngStyle]="stylePosition"-->
+    <ul
+      class="select__menu p-0"
+    >
+      <!--      class="select__menu position-abs bg-color-light margin-0 p-0"-->
+
+      <ng-container *ngFor="let item of menus; index as i">
+        <li
+          *ngIf="item"
+          class="list-style-none"
+          (click)="onActionTable({data: item, index : i})"
+        >
+          <a href="javascript:" class="display-flex-center">
+            <!--          <i-->
+            <!--            *ngIf="item.icon"-->
+            <!--            [ngClass]="item.icon"-->
+            <!--            class="third-color-txt"-->
+            <!--          ></i>-->
+            {{ item.option }}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+
+</div>

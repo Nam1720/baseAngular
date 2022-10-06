@@ -1,0 +1,11 @@
+<div class="pt-2">
+  <app-plan-year-action></app-plan-year-action>
+  <div class="panel">
+    <app-plan-month-year-filter></app-plan-month-year-filter>
+  </div>
+  <app-custom-table
+    [dataSource]="getData()"
+    [configColumns]="columns"
+    [option]="getOpt()"
+  ></app-custom-table>
+</div>

@@ -1,0 +1,15 @@
+@import "src/assets/scss/commons/mixins";
+
+.list-notify {
+  @include toRem('gap', 10);
+  @include toRem('padding-left  ', 8);
+
+  .item {
+    @include toRem('font-size', 14);
+
+    &__img {
+      @include toRem('margin-right', 9)
+    }
+  }
+
+}

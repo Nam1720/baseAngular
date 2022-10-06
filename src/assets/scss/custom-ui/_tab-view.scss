@@ -1,0 +1,19 @@
+@import "src/assets/scss/commons/variables";
+
+.p-tabview .p-tabview-nav li.tab-create-plan .p-tabview-nav-link {
+  color: $primary_color_txt;
+  @include toRem('font-size', 14);
+  border: none;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: $color_white;
+  background-color: $color_blue_btn;
+  @include toRem('font-size', 14);
+}
+
+.tab-list-create-plan .p-tabview-nav-container .p-tabview-nav {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 5px;
+}

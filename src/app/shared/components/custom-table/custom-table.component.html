@@ -1,0 +1,63 @@
+<div class="position-rel">
+  <table class="full-width" border="1">
+    <thead>
+    <tr>
+      <th
+        *ngFor="let column of configColumns"
+        [attr.rowspan]="calcRowSpan( column.colChildren)"
+        [attr.colspan]="calcColSpan( column.colChildren)"
+        [ngStyle]="{'width': column.width + '%'}"
+
+      >
+        {{ column.name }}
+      </th>
+    </tr>
+    <tr *ngIf="this.colChildren.length > 0">
+      <th rowspan="1" colspan="1" *ngFor="let col of colChildren">
+        {{ col.name }}
+      </th>
+    </tr>
+    <!--    <tr>-->
+    <!--      <th rowspan="2" colspan="1">Check</th>-->
+    <!--      <th rowspan="2" colspan="1">Mã SP</th>-->
+    <!--      <th rowspan="2" colspan="1">KH</th>-->
+    <!--      <th rowspan="2" colspan="1">Tên - ký hiệu sản phẩm - BTC</th>-->
+    <!--      <th rowspan="2" colspan="1">Chuyên viên phụ trách</th>-->
+    <!--      <th rowspan="2" colspan="1">Nơi SX</th>-->
+    <!--      <th rowspan="2" colspan="1">KH/TH</th>-->
+    <!--      <th rowspan="1" colspan="2">Dự kiến giao hàng</th>-->
+    <!--      <th colspan="1" rowspan="2">Tồn đầu</th>-->
+    <!--      <th rowspan="2" colspan="1">Tổng nhập trước</th>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <th rowspan="1" colspan="1">Trong tháng</th>-->
+    <!--      <th rowspan="1" colspan="1">Tháng kế tiếp</th>-->
+    <!--    </tr>-->
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let data of dataSource">
+      <td>{{data['check']}}</td>
+      <td>{{data['product_id']}}</td>
+      <td>{{data['product_name']}}</td>
+      <td>
+        <app-select-table [value]="valueSelected" [menus]="option" [position]="'right'" [rowData]="data"
+                          (clickAction)="onActionRow($event)"></app-select-table>
+      </td>
+      <td>{{data['address']}}</td>
+      <td>{{data['month']}}</td>
+      <td>{{data['next_month']}}</td>
+      <td>107900</td>
+      <td>134900</td>
+      <td>
+        <app-input-table></app-input-table>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template>
+  <select></select>
+</ng-template>

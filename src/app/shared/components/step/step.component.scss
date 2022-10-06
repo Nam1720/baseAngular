@@ -1,0 +1,71 @@
+@import '../../../../assets/scss/commons/variables';
+
+.stepper {
+  &__item {
+    flex: 1;
+    --circle-size: 0.6rem;
+    &:before {
+      content: "";
+      line-height: var(--circle-size);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+    }
+
+    &:not(:last-child) {
+      &:after {
+        content: "";
+        position: relative;
+        top: 0;
+        left: calc(var(--circle-size) / 2);
+        width: 1px;
+        height: 50px;
+      }
+    }
+
+    &__title {
+      color: $color_line_boder;
+      left: 1rem;
+      top: -4px;
+      &.active {
+        color: $color_dark;
+      }
+    }
+    
+    &.color-0 {
+      &:after {
+        background-color: $color_line_boder;
+      }
+      &:before {
+        background-color: $color_line_boder;
+      }
+    }
+
+    &.color-1 {
+      &:after {
+        background-color: $color_line_blue;
+      }
+      &:before {
+        background-color: $color_line_blue;
+      }
+    }
+
+    &.color-2 {
+      &:after {
+        background-color: $color_line_boder;
+      }
+      &:before {
+        background-color: $color_line_blue;
+      }
+    }
+
+    &.color-3 {
+      &:after {
+        background-color: $color_line_blue;
+      }
+      &:before {
+        background-color: $color_line_blue;
+      }
+    }
+  }
+}

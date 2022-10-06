@@ -1,0 +1,132 @@
+<form [formGroup]="formValidateInfo" autocomplete="off" (submit)="onAddLabor()">
+  <p-dialog
+  header="Thêm mới công nhân"
+  [(visible)]="visibleModal"
+  styleClass="border-0"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  (onHide)="closeModal()"
+  >
+    <div class="row">
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="invoice" class="display-block full-width mb-1 font-weight-semibold">Tên công nhân *</label>
+        <input
+          pInputText
+          id="name"
+          type="text"
+          formControlName="name"
+          name="name"
+          class="full-width"
+          placeholder="Nhập tên công nhân"
+        />
+        <div
+          *ngIf=" checkFormValid('name') && formValidateInfo.controls['name'].errors?.required"
+          class="font-size-13 color-red mt-2"
+          [ngClass]="{ 'ng-dirty': checkFormValid('name') }"
+        >
+          Vui lòng nhập tên công nhân.
+        </div>
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="sex" class="display-block full-width mb-3 font-weight-semibold">Giới tính</label>
+        <div class="form-input radio display-flex-center">
+          <p-radioButton name="sex" value="0" formControlName="sex" label="Nam" class="mr-4"></p-radioButton>
+          <p-radioButton name="sex" value="1" formControlName="sex" label="Nữ"></p-radioButton>
+        </div>
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="date" class="display-block full-width mb-1 font-weight-semibold">Ngày sinh *</label>
+        <p-calendar formControlName="date" placeholder="Ngày sinh" styleClass="full-width" [showIcon]="true" appendTo="body" dateFormat="dd/mm/yy"></p-calendar>
+        <div
+          *ngIf=" checkFormValid('date') && formValidateInfo.controls['date'].errors?.required"
+          class="font-size-13 color-red mt-2"
+          [ngClass]="{ 'ng-dirty': checkFormValid('date') }"
+        >
+          Vui lòng nhập ngày sinh.
+        </div>
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="phone" class="display-block full-width mb-1 font-weight-semibold">Số điện thoại</label>
+        <input
+          pInputText
+          id="phone"
+          type="text"
+          formControlName="phone"
+          name="phone"
+          class="full-width"
+          placeholder="Nhập số điện thoại"
+        />
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="address" class="display-block full-width mb-1 font-weight-semibold">Địa chỉ</label>
+        <input
+          pInputText
+          id="address"
+          type="text"
+          formControlName="address"
+          name="address"
+          class="full-width"
+          placeholder="Nhập số điện thoại"
+        />
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="email" class="display-block full-width mb-1 font-weight-semibold">Email</label>
+        <input
+          pInputText
+          id="email"
+          type="text"
+          formControlName="email"
+          name="email"
+          class="full-width"
+          placeholder="Nhập email công nhân"
+        />
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="position" class="display-block full-width mb-1 font-weight-semibold">Chức vụ</label>
+        <p-dropdown
+          formControlName="position"
+          [options]="categoryLaborService.listFilterFactory"
+          optionLabel="name"
+          optionValue="value"
+          [showClear]="true"
+          appendTo="body"
+          placeholder="Chọn chức vụ"
+        ></p-dropdown>
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="department" class="display-block full-width mb-1 font-weight-semibold">Phòng ban</label>
+        <p-dropdown
+          formControlName="department"
+          [options]="categoryLaborService.listFilterFactory"
+          optionLabel="name"
+          optionValue="value"
+          [showClear]="true"
+          appendTo="body"
+          placeholder="Chọn phòng ban"
+        ></p-dropdown>
+      </div>
+      <div class="form-item mb-4 col-md-6 col-sm-12">
+        <label for="department" class="display-block full-width mb-1 font-weight-semibold">Hình ảnh</label>
+        <app-upload-file [isOnlyFile]="true"></app-upload-file>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="display-flex-center justify-content-end">
+        <button
+          pButton
+          type="button"
+          label="Hủy"
+          class="btn btn--cancel"
+          (click)="closeModal()"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="Lưu"
+          class="btn btn--save"
+        ></button>
+      </div>
+    </ng-template>
+  </p-dialog>
+</form>

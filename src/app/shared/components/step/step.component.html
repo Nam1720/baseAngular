@@ -1,0 +1,5 @@
+<div class="stepper">
+  <div *ngFor="let step of listStep" class="stepper__item display-flex-column position-rel text-center" [ngClass]="changeColor(step)?'color-1':'color-0'" >
+    <h4 class="stepper__item__title font-size-14 position-abs" [ngClass]="changeColor(step)?'active':''">{{step.content}}</h4>
+  </div>
+</div>

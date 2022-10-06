@@ -1,0 +1,13 @@
+.p-datatable .p-datatable-tfoot > tr > td,
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-thead > tr > th {
+
+  &.text-right {
+    @extend .text-right;
+    @extend .justify-content-end;
+  }
+  &.text-center {
+    @extend .text-center;
+    @extend .justify-content-center;
+  }
+}

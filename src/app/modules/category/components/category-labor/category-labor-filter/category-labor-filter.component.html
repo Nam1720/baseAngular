@@ -1,0 +1,33 @@
+<div class="labor__filter row mb-2">
+  <app-input-text-throttle
+    class="col-md-3 col-sm-4 pr-xl-0 pr-lg-0"
+    (filter)="filterService.eventChangeKeyword($event)"
+  ></app-input-text-throttle>
+  <p-dropdown
+    [options]="categoryLaborService.listFilterFactory"
+    optionLabel="name"
+    placeholder="Tên phân xưởng"
+    styleClass="full-width"
+    optionValue="value"
+    class="col-md-3 col-sm-4 pr-xl-0 pr-lg-0"
+    (onChange)="onSelectStatus($event)"
+    [showClear]="true"
+  ></p-dropdown>
+  <div class="col-md-3 col-sm-1">
+  </div>
+  <div class="col-md-3 display-flex justify-content-end">
+    <a
+      pButton
+      type="button"
+      label="Thêm mới"
+      icon="icon-add"
+      class="btn btn--add"
+      (click)="onHandleAdd()"
+    ></a>
+  </div>
+</div>
+<app-modal-add-category-labor
+  *ngIf="visibleModalAdd"
+  (close)="visibleModalAdd=false"
+>
+</app-modal-add-category-labor>

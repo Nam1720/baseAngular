@@ -1,0 +1,34 @@
+<div class="row pt-2">
+  <div class="col-lg-9">
+    <h2 class="font-size-24 text-center mb-3">Kế hoạch sản xuất tháng 6/2022</h2>
+
+    <p-tabView styleClass="tab-list-create-plan" [(activeIndex)]="activeIndex">
+      <div class="d-flex align-items-center mb-3 d-lg-none">
+        <button type="button" label="kiểm tra tồn" class="btn btn--blue-bg mr-1"></button>
+        <button type="button" label="import file" icon="icon icon-add color-blue-btn"
+                class="btn btn--white"></button>
+      </div>
+      <p-tabPanel headerStyleClass="tab-create-plan" header="Kế hoạch">
+        <ng-template pTemplate="content">
+          <app-plan-month-form></app-plan-month-form>
+        </ng-template>
+      </p-tabPanel>
+      <app-plan-month-form-filter></app-plan-month-form-filter>
+      <p-tabPanel headerStyleClass="tab-create-plan" header="KH Giao hàng">
+        <ng-template>
+          Content 2
+        </ng-template>
+      </p-tabPanel>
+
+    </p-tabView>
+
+
+  </div>
+
+  <div class="col-lg-3 ">
+    <app-plan-month-notify></app-plan-month-notify>
+  </div>
+
+</div>
+
+

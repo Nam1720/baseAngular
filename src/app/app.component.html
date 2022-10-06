@@ -1,0 +1,49 @@
+<div
+  class="app-main display-flex"
+  [ngClass]="{
+    'sidebar-hide': !appService?.isOpenSidebar,
+    'page-login': this.location.path().includes('login')
+  }"
+>
+  <app-sidebar></app-sidebar>
+  <main
+    class="full-width"
+    [ngClass]="this.location.path().includes('login') ? 'main-login' : 'main'"
+  >
+    <app-header></app-header>
+    <div
+      class="effect-transition-fast"
+      [ngClass]="
+        this.location.path().includes('login')
+          ? 'main-layout-login'
+          : 'main-layout'
+      "
+    >
+      <router-outlet> </router-outlet>
+    </div>
+    <p-toast position="top-right"></p-toast>
+  </main>
+  <p-confirmDialog
+    #confirmSup
+    header="Delete"
+    icon="pi pi-exclamation-triangle"
+  >
+    <ng-template pTemplate="footer">
+      <button
+        type="button"
+        pButton
+        label="No"
+        class="p-button-text"
+        (click)="confirmSup.reject()"
+      ></button>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        class="p-button-danger"
+        label="Yes"
+        (click)="confirmSup.accept()"
+      ></button>
+    </ng-template>
+  </p-confirmDialog>
+</div>

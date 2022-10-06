@@ -1,0 +1,52 @@
+<p-dialog
+  [visible]="true"
+  [modal]="true"
+  [(visible)]="visibleModal"
+  [breakpoints]="{'450px': '85vw'}"
+  [style]="{width: '420px'}"
+  [styleClass]="'confirm-custom ' + type"
+  (onHide)="closeModal()"
+>
+  <ng-template pTemplate="header">
+    <div class="confirm-custom__title display-flex-center">
+      <i class="font-size-22 mr-2" [ngClass]="iconHead"></i> <b class="font-size-20">{{ title }}</b>
+    </div>
+  </ng-template>
+  <div class="confirm-custom__body">
+    <div class="confirm-custom__message mb-4">
+      {{ message }}
+    </div>
+    <div *ngIf="isShowNote" class="form-input mb-4">
+      <textarea
+        id="description"
+        [(ngModel)]="textNote" 
+        pInputTextarea
+        placeholder="Input note"
+        styleClass="full-width" 
+        [rows]="4"
+        class="full-width font-primary p-xl-2">
+      </textarea>
+    </div>
+    <div class="confirm-custom__action text-right">
+      <button
+        [disabled]="isLoading"
+        pButton
+        type="button"
+        class="p-ripple mr-3"
+        [ngClass]="type === 'delete' ? 'p-button-danger' : type === 'completion' ? 'p-button-success' : 'btn-yellow'"
+        (click)="acceptConfirm()"
+      >
+        {{ acceptLabel }}
+      </button>
+      <button
+        pButton
+        type="button"
+        class="p-ripple"
+        [ngClass]="type === 'delete' ? 'p-button-text p-button-plain' : type === 'completion' ? 'p-button-outlined p-button-success' : 'btn-yellow-outline'"
+        (click)="closeModal()"
+      >
+        {{ rejectLabel }}
+      </button>
+    </div>
+  </div>
+</p-dialog>

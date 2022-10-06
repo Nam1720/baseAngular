@@ -1,0 +1,42 @@
+<p-table
+  [value]="categoryLaborService.listLaborTable"
+  responsiveLayout="scroll"
+  styleClass="p-datatable-gridlines"
+  [rows]="10"
+  [rowsPerPageOptions]="[5,10,25,50]"
+  [paginator]="true">
+  <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Mã nhân công</th>
+        <th>Tên nhân công</th>
+        <th>DOB</th>
+        <th>Chức vụ</th>
+        <th>Phòng ban</th>
+        <th>Thao tác</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+      <tr>
+        <td>{{rowIndex + 1}}</td>
+        <td>{{item?.code}}</td>
+        <td>{{item?.name}}</td>
+        <td>{{item?.DOB}}</td>
+        <td>{{item?.position}}</td>
+        <td>{{item?.department}}</td>
+        <td>
+          <a href="javascript:;" class="mr-2" (click)="onHandleEdit(item)">
+            <i class="color-secondary font-size-16 icon-edit"></i>
+          </a>
+          <a href="javascript:;" (click)="onHandleDelete(item)">
+            <i class="color-red font-size-16 icon-delete"></i>
+          </a>
+        </td>
+      </tr>
+  </ng-template>
+</p-table>
+<app-modal-add-category-labor
+  *ngIf="visibleModalEdit"
+  (close)="visibleModalEdit=false"
+>
+</app-modal-add-category-labor>

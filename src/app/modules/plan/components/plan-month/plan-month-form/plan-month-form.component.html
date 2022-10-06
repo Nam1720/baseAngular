@@ -1,0 +1,39 @@
+<form class="form">
+  <div class="row">
+    <div class="form-item col-lg-4">
+      <label for="planCode">Mã kế hoạch:</label>
+      <input type="text" pInputText class="p-inputtext-md" placeholder="" id="planCode">
+    </div>
+    <div class="form-item col-lg-4">
+      <label for="planname">Tên kế hoạch:</label>
+      <input type="text" pInputText class="p-inputtext-md" placeholder="" id="planname">
+    </div>
+    <div class="form-item col-lg-4">
+      <label for="planCode">Năm:</label>
+      <p-dropdown optionLabel="năm" optionValue="value" placeholder="" [showClear]="true"
+                  styleClass="border-rd-5 flex-1"
+                  dropdownIcon="icon-arrow-bottom-fill color-blue "></p-dropdown>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="form-item__text col-lg-3">
+      <div class="display-flex font-size-14 color-blue align-items-baseline">
+        <i class="icon icon-calendar color-blue mr-3"></i>
+        <div class="display-flex align-items-center">
+          <span class="text-decoration-underline text-bold">Phân bố theo định mức</span>
+          <i class="icon-arrow-bottom-fill color-blue"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-item__text col-lg-3">
+      <div class="display-flex font-size-14 align-items-baseline">
+        <i class="icon icon-Deal-manager  color-gray mr-3"></i>
+        <div>
+          <span class="text-decoration-underline text-bold color-gray">Ước tính NVL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

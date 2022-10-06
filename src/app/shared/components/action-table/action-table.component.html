@@ -1,0 +1,26 @@
+<div class="table-action position-rel text-center">
+  <a
+    href="javascript:;"
+    class="table-action__icon"
+    appClickOutSide
+    (clickOutside)="isOpenMenu = false"
+    (click)="onClickOpenMenu($event)"
+  >
+    <i class="pi pi-ellipsis-v"></i>
+  </a>
+    <ul
+    *ngIf="isOpenMenu"
+      class="table-action__menu position-abs bg-color-light margin-0 p-0"
+      [ngClass]="{'right': position === 'right'}"
+      [ngStyle]="stylePosition"
+    >
+      <ng-container *ngFor="let item of menus">
+        <li *ngIf="item.active" class="item list-style-none" (click)="onActionTable(item)">
+          <a href="javascript:;" class="display-flex-center">
+            <i *ngIf="item.icon" [ngClass]="item.icon" class="third-color-txt"></i>
+            {{ item.name }}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+</div>

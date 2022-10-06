@@ -1,0 +1,22 @@
+@import "src/assets/scss/commons/variables";
+@import "src/assets/scss/commons/mixins";
+
+.input-table {
+  @include toRem('padding', 5);
+
+  p {
+    padding: 2px;
+    border: 1px solid $color_border_2;
+    width: 90%;
+    @include toRem('width', 100);
+    @include toRem('height', 25);
+    background-color: $color_white;
+    border-radius: 4px;
+  }
+
+  input {
+    @include toRem('width', 100);
+    max-width: 100%;
+    @include toRem('height', 25);
+  }
+}

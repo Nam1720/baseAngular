@@ -1,0 +1,37 @@
+<header class="header display-flex-center justify-content-between full-width bg-color-light effect-transition-fast">
+  <div class="header__left display-flex-center">
+    <div class="header__logo effect-transition-fast display-flex-center justify-content-between">
+      <a routerLink="/over-view"><img src="./assets/images/Logoxl.png" class="effect-transition-fast" alt="Logo"></a>
+      <i class="icon-arrow-left-fill color-blue font-size-20 cursor-pointer" (click)="appService.onToggleSidebar()"></i>
+    </div>
+    <div class="header__breadcrumb">
+      <app-bread-crumb></app-bread-crumb>
+    </div>
+  </div>
+  <div class="header__right display-flex-center">
+    <!-- <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+      <option *ngFor="let language of translate.getLangs()" [value]="language"
+        [selected]="language === translate.currentLang">
+        {{ language }}
+      </option>
+    </select> -->
+    <div class="header__notification mr-5">
+      <a href="javascript:;" class="header__notification__icon">
+        <i class="icon-bell font-size-24 color-bg-gray"></i>
+      </a>
+    </div>
+    <div class="header__account">
+      <a href="javascript:;" class="header__account__info display-flex-center primary-color-txt" (click)="menu.toggle($event)">
+        <p-avatar
+          class="header__account__avatar"
+          image="./assets/images/avatar-user.png"
+          size="large"
+          shape="circle"
+        ></p-avatar>
+        <span class="header__account__name ml-2">Arlene McCoy</span>
+        <i class="icon-arrow-bottom-fill color-blue font-size-20 ml-1"></i>
+      </a>
+      <p-menu #menu [popup]="true" [model]="menuAccount"></p-menu>
+    </div>
+  </div>
+</header>

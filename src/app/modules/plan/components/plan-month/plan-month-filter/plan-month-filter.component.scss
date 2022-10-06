@@ -1,0 +1,18 @@
+@import "../../../../../../assets/scss/commons/variables";
+@import "../../../../../../assets/scss/commons/mixins";
+
+.plan {
+
+
+}
+
+.col-lg-3, .col-lg-2 {
+  @include toRem('padding-left', 8);
+  @include toRem('padding-right', 8);
+}
+
+.p-dropdown .p-dropdown-label.p-placeholder {
+  color: black !important;
+}
+
+

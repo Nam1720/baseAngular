@@ -1,0 +1,26 @@
+<div class="product__filter row mb-2">
+  <app-input-text-throttle
+    class="col-md-3 col-sm-4 pr-xl-0 pr-lg-0"
+    (filter)="filterService.eventChangeKeyword($event)"
+  ></app-input-text-throttle>
+  <p-dropdown
+    [options]="categoryProductService.listFilterType"
+    optionLabel="name"
+    placeholder="Loại sản phẩm"
+    styleClass="full-width"
+    optionValue="value"
+    class="col-md-3 col-sm-4 pr-xl-0 pr-lg-0"
+    (onChange)="onSelectType($event)"
+    [showClear]="true"
+  ></p-dropdown>
+  <p-dropdown
+    [options]="categoryProductService.listFilterCode"
+    optionLabel="name"
+    placeholder="Mã sản phẩm"
+    styleClass="full-width"
+    optionValue="value"
+    class="col-md-3 col-sm-4 pr-xl-0 pr-lg-0"
+    (onChange)="onSelectType($event)"
+    [showClear]="true"
+  ></p-dropdown>
+</div>

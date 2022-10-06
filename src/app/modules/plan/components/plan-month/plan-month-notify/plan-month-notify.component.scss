@@ -1,0 +1,19 @@
+@import "src/assets/scss/commons/mixins";
+
+.panel-notify {
+  @include toRem('font-size', 14);
+}
+
+.list-notify {
+  @include toRem('gap', 10);
+  @include toRem('padding', 9);
+
+  .item {
+    @include toRem('font-size', 14);
+
+    &__img {
+      @include toRem('margin-right', 9)
+    }
+  }
+
+}

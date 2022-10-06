@@ -1,0 +1,119 @@
+@import "src/assets/scss/commons/variables";
+@import "src/assets/scss/commons/mixins";
+
+.p-dropdown, .p-inputwrapper, .p-inputnumber-input {
+  @extend .full-width;
+}
+
+.p-datatable .p-inputwrapper {
+  width: auto;
+}
+
+.form-readonly {
+  padding: 0.5rem 0.5rem;
+  min-height: 33px;
+}
+
+.input-has-btn-add {
+  width: calc(100% - 40px);
+
+  input,
+  .p-autocomplete {
+    @extend .full-width;
+  }
+}
+
+#custom_dropdown {
+  .p-dropdown {
+    border: none;
+    padding: 0;
+    background: none;
+  }
+}
+
+.form-disabled {
+  pointer-events: none;
+  opacity: 0.6;
+
+  &:not(button), input, .p-dropdown {
+    background: $color_bg_gray;
+  }
+}
+
+.form-upload, .form-upload-hide-input {
+  @extend .position-rel;
+
+  > *:not(input) {
+    @extend .pointer-evt-none;
+  }
+
+  input {
+    @extend .position-abs;
+    @extend .full-box;
+    @extend .opacity-0;
+    z-index: 1;
+  }
+}
+
+.form-upload {
+  border: 1px solid #ced4da;
+  padding: 8px;
+  border-radius: 3px;
+  min-width: 140px;
+  min-height: 30px;
+
+  .icon-upload {
+    right: 10px;
+  }
+
+  .upload {
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    opacity: 0;
+  }
+}
+
+.form-show {
+  padding: 0.9rem 0.5rem;
+}
+
+.form-input-mail {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $color_bg_gray;
+}
+
+.form-input-d-number {
+  border-radius: 6px;
+  border: 1px solid $color_bg_gray;
+  padding: 0 5px;
+
+  .p-inputnumber-input {
+    border: none;
+    border-radius: 6px;
+  }
+
+  .p-inputtext:enabled:focus {
+    box-shadow: none;
+  }
+}
+
+.box-add-fee {
+  background: $color_bg_gray;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid $color_bg_gray;
+}
+
+.form-item {
+  .p-inputwrapper {
+    flex: 1;
+  }
+}
+
+.p-inputtext {
+  @include toRem('font-size', 14);
+  @extend .primary-color-txt;
+}

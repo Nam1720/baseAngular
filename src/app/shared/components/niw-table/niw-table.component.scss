@@ -1,0 +1,36 @@
+@import "src/assets/scss/commons/variables";
+.niw-table {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    border-collapse: collapse;
+    background: $color_white;
+    border-color: $bg_body;
+
+    thead {
+      background: $color_bg_blue;
+      border-color: $color_white;
+
+    }
+
+    th, td {
+      padding: 0.4rem 0.65rem;
+    }
+    // th {
+    //   border-color: $color_white;
+    // }
+  }
+  .niw-table-expend {
+    thead {
+      background: #edf6f9;
+    }
+    tbody {
+      background: #f5fbfa;
+    }
+  }
+}
+.pi-transition {
+  transform: rotate(-90deg);
+};
+

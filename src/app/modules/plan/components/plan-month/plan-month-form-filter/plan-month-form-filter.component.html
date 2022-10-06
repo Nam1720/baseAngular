@@ -1,0 +1,32 @@
+<form class="form">
+  <div class="row mt-2">
+    <div class="col-lg-3">
+      <div class="form__item">
+    <span class="p-input-icon-left full-width">
+    <i class="pi pi-search color-bg-gray"></i>
+          <input pInputText placeholder="Tìm kiếm" class=" full-width border-rd-5 color-bg-gray">
+  </span>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form__item">
+        <p-calendar styleClass="border-rd-5 form__item full-width" placeholder="Thời gian"
+                    [showIcon]="true"></p-calendar>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form__item">
+        <p-dropdown placeholder="Phân xưởng" dropdownIcon="icon-arrow-bottom-fill color-blue"
+                    styleClass="border-rd-5 full-width"
+                    [showClear]="true"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form__item">
+        <p-dropdown placeholder="Khách hàng" dropdownIcon="icon-arrow-bottom-fill color-blue"
+                    styleClass="border-rd-5 full-width"
+                    [showClear]="true"></p-dropdown>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,12 @@
+<div class="breadcrumb">
+  <ul class="breadcrumb__list list-style-none display-flex">
+    <li *ngFor="let breadcrumb of listBread">
+      <a href="javascript:;" (click)="onChangePage(breadcrumb.url)">{{breadcrumb.label}}
+      </a>
+    </li>
+    <li *ngFor="let breadcrumb of commonService.listBreadcrumb">
+      <a href="javascript:;" (click)="onChangePage(breadcrumb.url)">{{breadcrumb.label}}
+      </a>
+    </li>
+  </ul>
+</div>

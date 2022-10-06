@@ -1,0 +1,11 @@
+@import "src/assets/scss/commons/variables";
+@import "src/assets/scss/commons/mixins";
+
+.form {
+  &__item {
+    @include respond-to('large') {
+      margin-bottom: 1rem;
+    }
+  }
+}
+

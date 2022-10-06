@@ -1,0 +1,5 @@
+<div class="input-table">
+  <p class="font-size-14" *ngIf="!hasInput" (click)="hasInput = !hasInput"></p>
+  <input *ngIf="hasInput" pInputText>
+</div>
+

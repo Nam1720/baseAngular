@@ -1,0 +1,15 @@
+<div class="sidebar-nav bg-color-light" (mouseleave)="isHover = false" [ngClass]="{'sidebar-nav--active': isHover}">
+  <!-- <div class="sidebar-nav__head display-flex-center">
+    <a routerLink="/dasboard" class="sidebar-nav__logo effect-transition-fast">
+      <img *ngIf="appService.isOpenSidebar;else logoSmall" src="./assets/images/Logoxl.png" class="effect-transition-fast" alt="Logo petrol limex">
+      <ng-template #logoSmall>
+        <img  src="./assets/images/logo-small.png" class="effect-transition-fast" alt="Logo petrol limex">
+      </ng-template>
+    </a>
+  </div> -->
+  <div class="sidebar-nav__body display-table-full" (mouseover)="isHover = true">
+    <p-scrollPanel [style]="{width: '100%'}">
+      <p-panelMenu [model]="navItems"></p-panelMenu>
+    </p-scrollPanel>
+  </div>
+</div>

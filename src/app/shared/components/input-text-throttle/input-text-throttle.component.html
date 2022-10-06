@@ -1,0 +1,4 @@
+<div class="form-filter__keyword p-input-icon-left full-width">
+  <i class="pi pi-search"></i>
+  <input #inputKey pInputText [placeholder]="placeholder" [ngClass]="styleCss" [value]="filterService.paramFilterSearch.keyword" (keyup)="keywordUpdate.next(inputKey.value)" class="full-width">
+</div>

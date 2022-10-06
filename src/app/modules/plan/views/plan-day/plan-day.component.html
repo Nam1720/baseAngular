@@ -1,0 +1,12 @@
+<div class="plan-product display-flex justify-content-between">
+  <div class="plan-product__view">
+    <app-calendar-week [listCalendar]="listCalendarWeek" (accept)="changeTypeCalendar()"></app-calendar-week>
+  </div>
+  <div class="plan-product__nav bg-color-light">
+    <p-calendar [(ngModel)]="date14" [inline]="true" [showWeek]="true" class="custom-calendar-small"></p-calendar>
+    <div class="mt-3 ml-3">
+      <h3 class="font-size-14 text-center mb-4 text-uppercase">Quy trình sản xuất <span class="color-red">SP0001234</span></h3>
+      <app-step [listStep]="listStep"></app-step>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<p-dropdown
+  [options]="optionsMenu.dataList"
+  [optionLabel]="optionsMenu.label"
+  name="name"
+  placeholder="Select"
+  (onChange)="onSelectOption($event)"
+  (onShow)="onShowOption()"
+  appendTo="body"
+  [filter]="true"
+></p-dropdown>

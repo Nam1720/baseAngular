@@ -1,0 +1,158 @@
+<p-table
+  #dt
+  [value]="customers"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'name',
+    'country.name',
+    'representative.name',
+    'status'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Bunker List
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          #textInput
+          type="text"
+          (input)="dt.filterGlobal(textInput.value, 'contains')"
+          placeholder="Filter"
+        />
+      </span>
+    </div>
+    <div class="table-header mt-2">
+      <tr>
+        <th>
+          <p-calendar
+            (onSelect)="onDateSelect($event)"
+            (onClearClick)="dt.filter('', 'date', 'equals')"
+            [showButtonBar]="true"
+            styleClass="p-column-filter"
+            placeholder="Registration Date"
+            [readonlyInput]="true"
+            dateFormat="yy-mm-dd"
+          ></p-calendar>
+        </th>
+        <th style="width: 3rem"></th>
+        <th>
+          <p-dropdown
+            [options]="statuses"
+            (onChange)="dt.filter($event.value, 'status', 'equals')"
+            styleClass="p-column-filter"
+            placeholder="Select a Status"
+            [showClear]="true"
+          >
+            <ng-template let-option pTemplate="item">
+              <span [class]="'customer-badge status-' + option.value"
+                >&#123;&#123;option.label&#125;&#125;</span
+              >
+            </ng-template>
+          </p-dropdown>
+        </th>
+      </tr>
+      <p-button
+        label="Create"
+        icon="pi pi-plus-circle"
+        iconPos="left"
+      ></p-button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3rem"></th>
+      <th pSortableColumn="code">Code</th>
+      <th pSortableColumn="date">Dellvery Date</th>
+      <th pSortableColumn="supplier">Supplier</th>
+      <th pSortableColumn="vessel">Vessel</th>
+      <th pSortableColumn="quantityFo">quantity FO</th>
+      <th pSortableColumn="quantityGo">quantity GO</th>
+      <th pSortableColumn="barging">Barging</th>
+      <th pSortableColumn="buyer">Buyer</th>
+      <th pSortableColumn="totalCOGS">Total COGS</th>
+      <th pSortableColumn="totalSell">Total Sell</th>
+      <th pSortableColumn="status">Status</th>
+      <th pSortableColumn="Action">Action</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-customer>
+    <tr class="p-selectable-row">
+      <td>
+        <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+      </td>
+      <td>
+        <span class="p-column-title">code</span>
+        {{ customer.code }}
+      </td>
+      <td>
+        <span class="p-column-title">date</span>
+        <span class="image-text">{{ customer.date }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">supplier</span>
+        <span class="image-text">{{ customer.supplier }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">vessel</span>
+        {{ customer.vessel }}
+      </td>
+
+      <td>
+        <span class="p-column-title">quantityFo</span>
+        {{ customer.quantityFo }}
+      </td>
+      <td>
+        <span class="p-column-title">quantityGo</span>
+        {{ customer.quantityGo }}
+      </td>
+      <td>
+        <span class="p-column-title">barging</span>
+        {{ customer.barging }}
+      </td>
+      <td>
+        <span class="p-column-title">buyer</span>
+        {{ customer.buyer }}
+      </td>
+      <td>
+        <span class="p-column-title">totalCOGS</span>
+        {{ customer.totalCOGS }}
+      </td>
+      <td>
+        <span class="p-column-title">totalSell</span>
+        {{ customer.totalSell }}
+      </td>
+
+      <td>
+        <span class="p-column-title">Status</span>
+        <span [class]="'customer-badge status-' + customer.status">{{
+          customer.status
+        }}</span>
+      </td>
+      <td style="text-align: center">
+        <button
+          pButton
+          type="button"
+          class="p-button-secondary"
+          icon="pi pi-ellipsis-v"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No customers found.</td>
+    </tr>
+  </ng-template>
+</p-table>
