@@ -1,1 +1,272 @@
-<p>bunkering-add works!</p>
+<div class="col-12 mb-5">
+  <div class="display-flex justify-content-between form-arr">
+    <p>New</p>
+    <a>Add</a>
+  </div>
+
+  <p-table #dt [value]="datalist" dataKey="id" [metaKeySelection]="true">
+    <ng-template pTemplate="header" datalist>
+      <tr>
+        <th pSortableColumn="quantityFo">quantity FO</th>
+        <th pSortableColumn="quantityGo">quantity GO</th>
+        <th pSortableColumn="ImportPriceFO">Import price FO</th>
+        <th pSortableColumn="ImportPriceGO">Import price GO</th>
+        <th pSortableColumn="ImportBarging">Import Barging</th>
+        <th pSortableColumn="ExportPriceFO">Export price FO</th>
+        <th pSortableColumn="ExportPriceGO">Export price GO</th>
+        <th pSortableColumn="ExportBarging">Export Barging</th>
+        <th pSortableColumn="Edit">Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr class="p-selectable-row">
+        <td>
+          <span *ngIf="!item.Edit">{{ item.quantityFo }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.quantityFo"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.quantityGo }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.quantityGo"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ImportPriceFO }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ImportPriceFO"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ImportPriceGO }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ImportPriceGO"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ImportBarging }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ImportBarging"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ExportPriceFO }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ExportPriceFO"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ExportPriceGO }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ExportPriceGO"
+            type="text"
+          />
+        </td>
+        <td>
+          <span *ngIf="!item.Edit">{{ item.ExportBarging }}</span>
+          <input
+            class="inp-quantity"
+            *ngIf="item.Edit"
+            [(ngModel)]="item.ExportBarging"
+            type="text"
+          />
+        </td>
+        <td>
+          <button class="btn-action" (click)="handleClickEdit(item.id)">
+            <i class="pi pi-pencil mr-2"></i>
+          </button>
+          <button class="btn-action" (click)="handleClickDelete(item.id)">
+            <i class="pi pi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <tr class="p-selectable-row">
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <input class="inp-quantity" type="text" />
+        </td>
+        <td>
+          <button class="btn-action">
+            <i class="pi pi-pencil mr-2"></i>
+          </button>
+          <button class="btn-action"><i class="pi pi-trash"></i></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div class="group-info row mb-5">
+  <div class="group-info__left col-9">
+    <div class="buyer-info p-sm-3">
+      <h3 class="buyer-info__tittle">Buyer Information</h3>
+      <div class="buyer-info__form row">
+        <div class="col-6">
+          <p class="mt-3">Vessel</p>
+          <p-dropdown
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            optionLabel="name"
+          ></p-dropdown>
+          <p class="mt-3">Buyer name</p>
+          <p-dropdown
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+        <div class="col-6">
+          <p class="mt-3">Address</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input address"
+          />
+          <p class="mt-3">Email</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input email"
+          />
+          <p class="mt-3">Phone</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input phone"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="buyer-info p-sm-3 mt-3">
+      <h3 class="buyer-info__tittle">Suplier Information</h3>
+      <div class="buyer-info__form row">
+        <div class="col-6">
+          <p class="mt-3">Suplier</p>
+          <p-dropdown
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            optionLabel="name"
+          ></p-dropdown>
+          <p class="mt-3">Phone</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input address"
+          />
+        </div>
+        <div class="col-6">
+          <p class="mt-3">Address</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input address"
+          />
+          <p class="mt-3">Email</p>
+          <input
+            class="full-width"
+            type="text"
+            pInputText
+            placeholder="Input email"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-info__right col-3">
+    <div class="order-info p-sm-3">
+      <h3 class="order-info__tittle">order Information</h3>
+      <div class="order-info__form">
+        <p class="mt-3">Order date</p>
+        <p-calendar
+          [(ngModel)]="date3"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <p class="mt-3">Delivery date</p>
+        <p-calendar
+          class="full-width"
+          [(ngModel)]="date3"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <p class="mt-3">Supplier's payment date</p>
+        <p-calendar
+          class="full-width"
+          [(ngModel)]="date3"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <p class="mt-3">Buyer's payment date</p>
+        <p-calendar
+          class="full-width"
+          [(ngModel)]="date3"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <div class="order-info p-sm-3 mt-3">
+      <h3 class="order-info__tittle">order Information</h3>
+      <div class="order-info__form">
+        <p class="mt-3">Order date</p>
+        <p-calendar
+          [(ngModel)]="date3"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+      </div>
+    </div>
+  </div>
+</div>

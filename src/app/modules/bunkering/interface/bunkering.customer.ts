@@ -17,3 +17,8 @@ export interface Customer {
   status?: string;
   representative?: Representative;
 }
+
+export interface City {
+  name: string;
+  code: string;
+}

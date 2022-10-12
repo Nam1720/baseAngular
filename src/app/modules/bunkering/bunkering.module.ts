@@ -7,9 +7,6 @@ import { BunkeringRoutingModule } from './bunkering-routing.module';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { CustomerService } from './services/bunkering.services';
 
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
@@ -42,23 +39,5 @@ import { InputTextModule } from 'primeng/inputtext';
     CommonModule,
     BunkeringRoutingModule,
   ],
-  exports: [
-    TableModule,
-    CalendarModule,
-    SliderModule,
-    DialogModule,
-    MultiSelectModule,
-    ContextMenuModule,
-    DropdownModule,
-    ButtonModule,
-    ToastModule,
-    InputTextModule,
-    ProgressBarModule,
-    HttpClientModule,
-    FormsModule,
-    CommonModule,
-    BunkeringRoutingModule,
-  ],
-  providers: [CustomerService],
 })
 export class BunkeringModule {}
