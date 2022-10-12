@@ -9,11 +9,17 @@ export interface Representative {
 }
 
 export interface Customer {
-  id?: number;
-  name?: number;
-  country?: Country;
-  company?: string;
-  date?: string;
-  status?: string;
-  representative?: Representative;
+  id: number;
+  code: string;
+  date: string;
+  supplier: string;
+  vessel: string;
+  company: string;
+  quantityFo: number;
+  quantityGo: number;
+  barging: number;
+  buyer: string;
+  totalCOGS: number;
+  totalSell: number;
+  status: string;
 }
