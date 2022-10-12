@@ -8,23 +8,36 @@ export interface Representative {
   image?: string;
 }
 
-export interface Customer {
+export interface Bunkering {
   id: number;
   code: string;
-  date: string;
-  supplier: string;
-  vessel: string;
+  deliveryDate: string;
+  suplier: any;
+  vessel: any;
   company: string;
-  quantityFo: number;
-  quantityGo: number;
-  barging: number;
-  buyer: string;
-  totalCOGS: number;
-  totalSell: number;
+  quantityFo: string;
+  quantityGo: string;
+  barging: string;
+  buyerName: any;
+  importPriceFo: string;
+  importPriceGo: string;
   status: string;
 }
 
 export interface City {
   name: string;
   code: string;
+}
+export interface VesselList {
+  name: string;
+  value: string;
+}
+export interface BuyerList {
+  name: string;
+  value: string;
+}
+
+export interface SuplierList {
+  name: string;
+  value: string;
 }

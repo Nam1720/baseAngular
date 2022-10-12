@@ -99,15 +99,17 @@
       </td>
       <td>
         <span class="p-column-title">date</span>
-        <span class="image-text">{{ customer.date }}</span>
+        <span class="image-text">
+          {{ customer.deliveryDate | date: "dd-MM-yyyy" }}
+        </span>
       </td>
       <td>
         <span class="p-column-title">supplier</span>
-        <span class="image-text">{{ customer.supplier }}</span>
+        <span class="image-text">{{ customer.suplier.name }}</span>
       </td>
       <td>
         <span class="p-column-title">vessel</span>
-        {{ customer.vessel }}
+        {{ customer.vessel.name }}
       </td>
 
       <td>
@@ -124,15 +126,15 @@
       </td>
       <td>
         <span class="p-column-title">buyer</span>
-        {{ customer.buyer }}
+        {{ customer.buyerName.name }}
       </td>
       <td>
-        <span class="p-column-title">totalCOGS</span>
-        {{ customer.totalCOGS }}
+        <span class="p-column-title">Import PriceFo</span>
+        {{ customer.importPriceFo }}
       </td>
       <td>
-        <span class="p-column-title">totalSell</span>
-        {{ customer.totalSell }}
+        <span class="p-column-title">Import PriceGo</span>
+        {{ customer.importPriceGo }}
       </td>
 
       <td>

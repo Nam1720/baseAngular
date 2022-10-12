@@ -1,7 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Customer, Representative } from './../../interface/bunkering.customer';
+import {
+  Bunkering,
+  Representative,
+} from './../../interface/bunkering.customer';
 import { Table } from 'primeng/table';
-import { dataCustomer } from '../../services/dataCustomer';
+import { dataBunkering } from '../../services/dataCustomer';
 
 @Component({
   selector: 'app-bunkering-list',
@@ -9,22 +12,16 @@ import { dataCustomer } from '../../services/dataCustomer';
   styleUrls: ['./bunkering-list.component.scss'],
 })
 export class BunkeringListComponent {
-  customers = dataCustomer;
+  customers: Bunkering[] = dataBunkering;
 
-  // customers: Customer[];
-  selectedCustomers: Customer[];
+  selectedCustomers: Bunkering[];
   representatives: Representative[];
   statuses: any[];
   @ViewChild('dt') table: Table;
   constructor() {}
   ngOnInit() {
-    // customers = dataCustomer;
-    // this.customerService.getCustomersLarge().then((customers) => {
-    //   this.customers = customers;
-    //   this.loading = false;
-    // });
     this.statuses = [
-      { label: 'completed', value: 'completed' },
+      { label: 'Completed', value: 'Completed' },
       { label: 'Inprogress', value: 'Inprogress' },
       { label: 'Waiting', value: 'Waiting' },
       { label: 'reject', value: 'Reject' },

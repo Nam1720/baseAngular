@@ -5,7 +5,7 @@ import { BunkeringListComponent } from './views/bunkering-list/bunkering-list.co
 import { BunkeringAddComponent } from './views/bunkering-add/bunkering-add.component';
 import { BunkeringRoutingModule } from './bunkering-routing.module';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TableModule } from 'primeng/table';
@@ -37,6 +37,7 @@ import { InputTextModule } from 'primeng/inputtext';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    ReactiveFormsModule,
     BunkeringRoutingModule,
   ],
 })
