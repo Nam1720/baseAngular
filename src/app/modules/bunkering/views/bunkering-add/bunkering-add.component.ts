@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   Bunkering,
@@ -15,6 +15,8 @@ import { dataBunkering } from '../../services/dataCustomer';
   styleUrls: ['./bunkering-add.component.scss'],
 })
 export class BunkeringAddComponent implements OnInit {
+  bunkeringForm: FormGroup;
+
   newBunkering: Bunkering[] = dataBunkering;
   @Input() customers: any;
   @Output() submit = new EventEmitter<Bunkering[]>();
@@ -31,7 +33,7 @@ export class BunkeringAddComponent implements OnInit {
   selectedBuyerList: BuyerList;
   selectedSuplierList: BuyerList;
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private formBuilder: FormBuilder) {
     this.vesselList = [
       { name: 'P20', value: '1' },
       { name: 'P12', value: '2' },
@@ -51,106 +53,87 @@ export class BunkeringAddComponent implements OnInit {
     ];
   }
 
-  datalist: any = [
-    {
-      id: 0,
-      quantityFo: 1,
-      quantityGo: 2,
-      ImportPriceFO: 3,
-      ImportPriceGO: 4,
-      ImportBarging: 5,
-      ExportPriceFO: 6,
-      ExportPriceGO: 7,
-      ExportBarging: 8,
-      Edit: false,
-    },
-    {
-      id: 1,
-      quantityFo: 1,
-      quantityGo: 2,
-      ImportPriceFO: 3,
-      ImportPriceGO: 4,
-      ImportBarging: 5,
-      ExportPriceFO: 6,
-      ExportPriceGO: 7,
-      ExportBarging: 8,
-      Edit: false,
-    },
-    {
-      id: 2,
-      quantityFo: 1,
-      quantityGo: 2,
-      ImportPriceFO: 3,
-      ImportPriceGO: 4,
-      ImportBarging: 5,
-      ExportPriceFO: 6,
-      ExportPriceGO: 7,
-      ExportBarging: 8,
-      Edit: false,
-    },
-  ];
+  onSubmit(bunkeringForm: any) {
+    console.log('submit', bunkeringForm.value);
+    this.customers = this.newBunkering.push(bunkeringForm.value);
+    this.route.navigate(['/bunkering']);
+  }
 
-  onClickAdd() {
-    this.datalist.push({
-      id: this.datalist.length + 1,
-      quantityFo: 1,
-      quantityGo: 1,
-      ImportPriceFO: 1,
-      ImportPriceGO: 1,
-      ImportBarging: 1,
-      ExportPriceFO: 1,
-      ExportPriceGO: 1,
-      ExportBarging: 1,
-      Edit: true,
-    });
+  onCancel() {
+    this.route.navigate(['/bunkering']);
   }
 
   ngOnInit(): void {
-    console.log('first', this.datalist);
+    this.initForm();
   }
 
-  bunkeringForm = new FormGroup({
-    id: new FormControl(),
-    vessel: new FormControl(),
-    buyerName: new FormControl(),
-    addressBuyer: new FormControl(),
-    emailBuyer: new FormControl(),
-    phoneBuyer: new FormControl(),
+  private initForm() {
+    this.bunkeringForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      vessel: ['', Validators.required],
+      buyerName: ['', Validators.required],
+      addressBuyer: ['', Validators.required],
+      emailBuyer: ['', Validators.required],
+      phoneBuyer: ['', Validators.required],
 
-    suplier: new FormControl(),
-    phoneSuplier: new FormControl(),
-    addressSuplier: new FormControl(),
-    emailSuplier: new FormControl(),
+      suplier: ['', Validators.required],
+      phoneSuplier: ['', Validators.required],
+      addressSuplier: ['', Validators.required],
+      emailSuplier: ['', Validators.required],
 
-    orderDates: new FormControl(),
-    deliveryDate: new FormControl(),
-    suplierPaymentDate: new FormControl(),
-    buyerPaymentDate: new FormControl(),
-    fileUpload: new FormControl(),
+      orderDates: ['', Validators.required],
+      deliveryDate: ['', Validators.required],
+      suplierPaymentDate: ['', Validators.required],
+      buyerPaymentDate: ['', Validators.required],
+      fileUpload: ['', Validators.required],
 
-    quantityFo: new FormControl(),
-    quantityGo: new FormControl(),
-    barging: new FormControl(),
-    importPriceFo: new FormControl(),
-    importPriceGo: new FormControl(),
-  });
-
-  handleClickEdit(id: number) {
-    const data = this.datalist[id];
-    this.datalist[id] = { ...data, Edit: true };
-  }
-  handleClickDelete(id: number) {
-    this.datalist = this.datalist.filter((item: any) => {
-      return item.id !== id;
+      detail: this.formBuilder.array([this.getDetailItem()]),
     });
-    console.log(id);
   }
 
-  onSubmit(bunkeringForm: any) {
-    console.log('submit', bunkeringForm.value);
-    console.log('ádsadsadsadasdsad', this.newBunkering);
-    // console.log('first', this.customers);
-    this.customers = this.newBunkering.push(bunkeringForm.value);
-    this.route.navigate(['/bunkering']);
+  // form array
+  get detailArray() {
+    return this.bunkeringForm.get('detail') as FormArray;
+  }
+
+  private getDetailItem() {
+    return this.formBuilder.group({
+      id: [],
+      quantityFo: [],
+      quantityGo: [],
+      importPriceFo: [],
+      importPriceGo: [],
+      barging: [],
+      exportPriceFO: [],
+      exportPriceGO: [],
+      exportBarging: [],
+      edit: false,
+    });
+  }
+
+  onClickAdd() {
+    this.detailArray.push(this.getDetailItem());
+  }
+
+  removeDetail(index: number) {
+    this.detailArray.removeAt(index);
+  }
+
+  isEdit: boolean = false;
+  handleClickEdit(index: number) {
+    this.isEdit = true;
+    // const data = this.datalist[index];
+    // this.datalist[index] = { ...data, Edit: true };
+  }
+
+  updateForm() {
+    this.bunkeringForm.updateValueAndValidity({
+      emitEvent: true,
+    });
+    const data = this.bunkeringForm.value;
+    console.log({ data });
+
+    // const formatted = formatCode(data);
+    // this.code.nativeElement.innerHTML = formatted;
   }
 }

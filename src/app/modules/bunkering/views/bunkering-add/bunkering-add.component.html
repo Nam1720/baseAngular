@@ -1,12 +1,16 @@
-<button (click)="onClickAdd()">Add</button>
-
-<form [formGroup]="bunkeringForm" (submit)="onSubmit(bunkeringForm)" novalidate>
+<form
+  *ngIf="bunkeringForm"
+  [formGroup]="bunkeringForm"
+  (submit)="onSubmit(bunkeringForm)"
+  novalidate
+>
   <div class="col-12 mb-5">
     <div class="display-flex justify-content-between form-arr">
       <p>New</p>
+      <button type="button" mat-icon-button (click)="onClickAdd()">Add</button>
     </div>
 
-    <p-table #dt [value]="datalist" dataKey="id" [metaKeySelection]="true">
+    <p-table #dt dataKey="id" [metaKeySelection]="true">
       <ng-template pTemplate="header" datalist>
         <tr>
           <th pSortableColumn="quantityFo">quantity FO</th>
@@ -21,137 +25,83 @@
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-item>
-        <tr class="p-selectable-row">
+      <ng-template pTemplate="footer" formArrayName="detail">
+        <tr
+          class="p-selectable-row"
+          *ngFor="let newDetail of detailArray.controls; let i = index"
+          [formGroupName]="i"
+        >
           <td>
-            <span *ngIf="!item.Edit">{{ item.quantityFo }}</span>
             <input
               class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.quantityFo"
-              type="text"
+              type="number"
               formControlName="quantityFo"
-              name="quantityFo"
             />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.quantityGo }}</span>
             <input
               class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.quantityGo"
-              type="text"
+              type="number"
+              matInput
               formControlName="quantityGo"
-              name="quantityGo"
             />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ImportPriceFO }}</span>
             <input
               class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ImportPriceFO"
-              type="text"
+              type="number"
+              matInput
               formControlName="importPriceFo"
-              name="importPriceFo"
             />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ImportPriceGO }}</span>
             <input
               class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ImportPriceGO"
-              type="text"
+              type="number"
+              matInput
               formControlName="importPriceGo"
-              name="importPriceGo"
             />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ImportBarging }}</span>
             <input
               class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ImportBarging"
-              type="text"
+              type="number"
+              matInput
               formControlName="barging"
-              name="barging"
             />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ExportPriceFO }}</span>
-            <input
-              class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ExportPriceFO"
-              type="text"
-            />
+            <input class="inp-quantity" type="number" />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ExportPriceGO }}</span>
-            <input
-              class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ExportPriceGO"
-              type="text"
-            />
+            <input class="inp-quantity" type="number" />
           </td>
           <td>
-            <span *ngIf="!item.Edit">{{ item.ExportBarging }}</span>
-            <input
-              class="inp-quantity"
-              *ngIf="item.Edit"
-              [(ngModel)]="item.ExportBarging"
-              type="text"
-            />
+            <input class="inp-quantity" type="number" />
           </td>
           <td>
-            <button class="btn-action" (click)="handleClickEdit(item.id)">
+            <button
+              type="button"
+              class="btn-action"
+              (click)="handleClickEdit(i)"
+            >
               <i class="pi pi-pencil mr-2"></i>
             </button>
-            <button class="btn-action" (click)="handleClickDelete(item.id)">
+            <button type="button" class="btn-action" (click)="removeDetail(i)">
               <i class="pi pi-trash"></i>
             </button>
           </td>
         </tr>
       </ng-template>
-
-      <ng-template pTemplate="footer">
-        <tr class="p-selectable-row">
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <input class="inp-quantity" type="text" />
-          </td>
-          <td>
-            <button class="btn-action">
-              <i class="pi pi-pencil mr-2"></i>
-            </button>
-            <button class="btn-action"><i class="pi pi-trash"></i></button>
-          </td>
-        </tr>
-      </ng-template>
     </p-table>
   </div>
+  <!-- <button
+    class=""
+    pButton
+    type="button"
+    label="Save"
+    (click)="onSubmit()"
+  ></button> -->
 
   <div class="group-info row mb-5">
     <div class="group-info__left col-9">
@@ -305,6 +255,7 @@
         type="button"
         label="Cancel"
         class="p-button-outlined mr-3"
+        (click)="onCancel()"
       ></button>
       <button
         class=""

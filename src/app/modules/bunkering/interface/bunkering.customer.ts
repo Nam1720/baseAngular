@@ -14,13 +14,8 @@ export interface Bunkering {
   deliveryDate: string;
   suplier: any;
   vessel: any;
+  detail: any;
   company: string;
-  quantityFo: string;
-  quantityGo: string;
-  barging: string;
-  buyerName: any;
-  importPriceFo: string;
-  importPriceGo: string;
   status: string;
 }
 
