@@ -54,7 +54,7 @@ export class BunkeringAddComponent implements OnInit {
   }
 
   onSubmit(bunkeringForm: any) {
-    console.log('submit', bunkeringForm.value);
+    console.log('value', this.bunkeringForm.value)
     this.customers = this.newBunkering.push(bunkeringForm.value);
     this.route.navigate(['/bunkering']);
   }

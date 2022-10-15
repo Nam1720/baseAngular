@@ -45,6 +45,18 @@ export const dataBunkering = [
         exportBarging: 500000,
         edit: false,
       },
+      {
+        id: 500000,
+        quantityFo: 500000,
+        quantityGo: 500000,
+        importPriceFo: 500000,
+        importPriceGo: 500000,
+        barging: 500000,
+        exportPriceFO: 500000,
+        exportPriceGO: 500000,
+        exportBarging: 500000,
+        edit: false,
+      },
     ],
   },
   {
