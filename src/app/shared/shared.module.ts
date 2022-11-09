@@ -39,6 +39,7 @@ import { TableInputNumberFormComponent } from './components/niw-table/components
 import { TableDateFormComponent } from './components/niw-table/components/form/table-date-form/table-date-form.component';
 import { ActionTableComponent } from './components/action-table/action-table.component';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ScrollTableComponent } from './components/scroll-table/scroll-table.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     TableInputNumberFormComponent,
     TableDateFormComponent,
     ActionTableComponent,
+    ScrollTableComponent,
   ],
   imports: [
     CommonModule,

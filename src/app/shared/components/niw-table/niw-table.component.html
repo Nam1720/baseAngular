@@ -29,7 +29,7 @@
         </tr>
       </ng-container>
     </thead>
-    <tbody>
+    <tbody #ob>
       <!-- *ngFor="let item of dataSource; trackBy: trackById; let isEven = even; let isOdd = odd; let i = index" -->
       <ng-container *ngFor="let item of dataSource; let rowIndex = index">
         <tr>
@@ -65,8 +65,11 @@
             </ng-container>
           </td>
           <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
-            <td *ngFor="let day of counter(daysInMonth); let j = index">
-              {{ item.days[j] }}
+            <td *ngFor="let day of counter(daysInMonth); let j = index" [attr.data-tr]="rowIndex" [attr.data-day]="j">
+              <!-- <app-scroll-table [dataDay]="item.days[j]" (dataDays)="dataDay($event)">
+                {{item.days[j]}}
+              </app-scroll-table> -->
+
             </td>
           </ng-container>
           <td *ngIf="menuAction.length">...</td>
@@ -99,8 +102,8 @@
                       </ng-container>
                     </td>
                     <ng-container *ngIf="displayMonthTable && daysInMonth > 0">
-                      <td *ngFor="let day of counter(daysInMonth); let j = index">
-                        {{ item.days[j] }}
+                      <td *ngFor="let day of counter(daysInMonth); let j = index" [attr.data-tr]="rowIndex" [attr.data-day]="j">
+                        <!-- {{ item.days[j] }} -->
                       </td>
                     </ng-container>
                     <th *ngIf="menuAction.length"></th>

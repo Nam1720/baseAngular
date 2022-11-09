@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 import { ConfigTable, TheadModel, TbodyModel, ConfigTableCol, KeyTableRender, MenuAction } from './interface/table.interface';
 
@@ -26,6 +26,12 @@ export class NiwTableComponent implements OnInit {
   expendActive: number = -1;
   selectedRows: any[]=[];
   selectedRowsId: number[]=[];
+
+
+
+  @ViewChild('ob', { read: ElementRef })
+  ob: ElementRef;
+  private observer: IntersectionObserver;
 
   get configCollumn() {
     return this._configCollumn;
@@ -142,4 +148,41 @@ export class NiwTableComponent implements OnInit {
     console.log('show');
     
   }
+
+  loadColumn(elements: any) {
+    elements.forEach((element: any) => {
+      if (element.isIntersecting) {
+        if (element.target.attributes['data-tr']) {
+          const tr = Number(element.target.attributes['data-tr'].value);
+          const day = Number(element.target.attributes['data-day'].value);
+          console.log('tr',day);
+
+          element.target.innerHTML = this.dataSource[tr].days[day];
+        }
+
+        this.observer.unobserve(element.target);
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    this.observer = new IntersectionObserver(
+      (element) => this.loadColumn(element),
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 1,
+      }
+    );
+    Array.from(this.ob.nativeElement.children).forEach((childrenOb: any) => {
+      Array.from(childrenOb.children).forEach((children) => {
+        this.observer.observe(children as HTMLElement);
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.observer.disconnect();
+  }
+ 
 }

@@ -4,7 +4,13 @@
   styleClass="p-datatable-gridlines"
   [rows]="10"
   [rowsPerPageOptions]="[5,10,25,50]"
-  [paginator]="true">
+  [paginator]="true"
+  
+  [scrollable]="true" 
+  scrollHeight="400px"
+  scrollDirection="both"
+
+  >
   <ng-template pTemplate="header">
       <tr>
         <th>STT</th>
@@ -40,3 +46,31 @@
   (close)="visibleModalEdit=false"
 >
 </app-modal-add-category-labor>
+
+
+<div class="flex flex-row overflow-x-visible" x-data="">
+  <template x-for="i in 100">
+  <div class="border border-black m-1 p-10 min-w-max h-10"
+       x-data=""
+       x-init="() => {
+           let timeout;
+           let loadColumn = function (elements) {
+               clearTimeout(timeout);
+               
+               timeout = setTimeout(function() {
+                   elements.forEach(element => {
+                       if (element.isIntersecting) {
+                           element.target.classList.add('bg-black');
+                           observer.unobserve(entries[0].target);
+                       }
+                   });
+               }, 750);
+           }
+           
+           let observer = new IntersectionObserver(loadColumn);
+           let target = $el;
+           observer.observe(target);
+       }">
+  </div>
+  </template>
+</div>

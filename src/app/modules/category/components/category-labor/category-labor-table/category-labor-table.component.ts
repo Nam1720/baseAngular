@@ -34,4 +34,6 @@ export class CategoryLaborTableComponent implements OnInit {
   onHandleEdit(item: LaborDetail) {
     this.visibleModalEdit = true;
   };
+
+
 }
